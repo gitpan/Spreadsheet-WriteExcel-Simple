@@ -2,7 +2,7 @@ package Spreadsheet::WriteExcel::Simple;
 
 use strict;
 use vars qw/$VERSION/;
-$VERSION = 0.01;
+$VERSION = 0.02;
 
 use Spreadsheet::WriteExcel 0.31;
 use IO::Scalar              1.126;
@@ -14,8 +14,8 @@ Spreadsheet::WriteExcel::Simple - A simple single-sheet Excel document
 =head1 SYNOPSIS
 
   my $ss = Spreadsheet::WriteExcel::Simple->new;
-     $ss->write_bold_row(@headings);
-     $ss->write_row(@data);
+     $ss->write_bold_row(\@headings);
+     $ss->write_row(\@data);
   print $ss->data;
 
 =head1 DESCRIPTION
@@ -60,8 +60,8 @@ sub new {
 
 =head2 write_row / write_bold_row
 
-  $ss->write_bold_row(@headings);
-  $ss->write_row(@data);
+  $ss->write_bold_row(\@headings);
+  $ss->write_row(\@data);
 
 These write the list of data into the next row of the spreadsheet.
 
@@ -130,7 +130,8 @@ Tony Bowden, E<lt>tony@tmtm.comE<gt>.
 
 =head1 SEE ALSO
 
-L<Spreadsheet::WriteExcel>. John McNamara has done a great job with this.
+L<Spreadsheet::WriteExcel>. John McNamara has done a great job with
+this module.
 
 =head1 COPYRIGHT
 

@@ -1,5 +1,8 @@
 Revision history for Perl extension Spreadsheet::WriteExcel::Simple.
 
+0.02  Sat Aug 11 2001
+	- added tests using Spreadsheet::ParseExcel
+
 0.01  Tue Aug  7 2001
 	- original version
 
