@@ -2,7 +2,7 @@ package Spreadsheet::WriteExcel::Simple;
 
 use strict;
 use vars qw/$VERSION/;
-$VERSION = 0.03;
+$VERSION = '1.01';
 
 use Spreadsheet::WriteExcel 0.31;
 use IO::Scalar              1.126;
@@ -16,7 +16,10 @@ Spreadsheet::WriteExcel::Simple - A simple single-sheet Excel document
   my $ss = Spreadsheet::WriteExcel::Simple->new;
      $ss->write_bold_row(\@headings);
      $ss->write_row(\@data);
+
   print $ss->data;
+	# or
+	$ss->save("filename.xls");
 
 =head1 DESCRIPTION
 
@@ -118,13 +121,34 @@ sub sheet { $_[0]->{sheet} }
 
 sub _bold { $_[0]->{bold} }
 
+=head2 save
+
+	$ss->save("filename.xls");
+
+Save the spreadsheet to the given filename.
+
+=cut
+
+sub save {
+	my $self = shift;
+	my $name = shift or die 'save() needs a file name';
+	open  my $file, ">$name" or die "Could not open $name for writing: $!";
+	print $file $self->data;
+	close $file;
+}
+
 =head1 BUGS
 
 This can't yet handle dates.
 
 =head1 AUTHOR
 
-Tony Bowden, E<lt>tony@tmtm.comE<gt>.
+Tony Bowden
+
+=head1 BUGS and QUERIES
+
+Please direct all correspondence regarding this module to:
+  bug-Spreadsheet-WriteExcel-Simple@rt.cpan.org
 
 =head1 SEE ALSO
 
@@ -133,7 +157,7 @@ this module.
 
 =head1 COPYRIGHT
 
-Copyright (C) 2001 Tony Bowden. All rights reserved.
+Copyright (C) 2001-2004 Tony Bowden. All rights reserved.
 
 This module is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

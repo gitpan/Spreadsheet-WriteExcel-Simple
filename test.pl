@@ -23,8 +23,7 @@ if ($@) {
     my $ss = Spreadsheet::WriteExcel::Simple->new;
        $ss->write_bold_row([qw/foo bar baz/]);
        $ss->write_row([qw/1 fred 2001-01-01/]);
-    print $fh1 $ss->data;
-    close $fh1;
+       $ss->save($name1);
   
     # Now read it back in
     my $oExcel = new Spreadsheet::ParseExcel;
