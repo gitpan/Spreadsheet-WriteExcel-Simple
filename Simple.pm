@@ -2,7 +2,7 @@ package Spreadsheet::WriteExcel::Simple;
 
 use strict;
 use vars qw/$VERSION/;
-$VERSION = 0.02;
+$VERSION = 0.03;
 
 use Spreadsheet::WriteExcel 0.31;
 use IO::Scalar              1.126;
@@ -55,6 +55,7 @@ sub new {
   $self->{bold} = $self->book->addformat();
   $self->{bold}->set_bold;
   $self->{sheet} = $self->book->addworksheet;
+  $self->{_row} = 0;
   $self;
 }
 
@@ -72,21 +73,18 @@ written to.
 
 =cut
 
-{ my $row = 0;
-
-  sub write_row {
-    my $self = shift;
-    my $dataref = shift;
-    my @data = map { defined $_ ? $_ : '' } @$dataref;
-    my $fmt  = shift || '';
-    my $col = 0;
-    my $ws = $self->sheet;
-       $ws->write($row, $col++, $_, $fmt) foreach @data;
-    $row++;
-  }
-
-  sub write_bold_row { $_[0]->write_row($_[1], $_[0]->_bold) }
+sub write_row {
+  my $self = shift;
+  my $dataref = shift;
+  my @data = map { defined $_ ? $_ : '' } @$dataref;
+  my $fmt  = shift || '';
+  my $col = 0;
+  my $ws = $self->sheet;
+     $ws->write($self->{_row}, $col++, $_, $fmt) foreach @data;
+  $self->{_row}++;
 }
+
+sub write_bold_row { $_[0]->write_row($_[1], $_[0]->_bold) }
 
 =head2 data
 

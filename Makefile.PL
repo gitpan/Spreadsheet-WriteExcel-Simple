@@ -7,6 +7,7 @@ WriteMakefile(
     'PREREQ_PM'		=> { 
                              'Spreadsheet::WriteExcel' => 0.31,
                              'IO::Scalar'              => 1.126,
+                             'Test::More'              => 0.04,
                            },
     ($] >= 5.005 ?    ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM => 'Simple.pm', # retrieve abstract from module

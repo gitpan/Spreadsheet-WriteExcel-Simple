@@ -1,5 +1,9 @@
 Revision history for Perl extension Spreadsheet::WriteExcel::Simple.
 
+0.03  Sun Sep 22 2002
+	- Moved row counter to object data so that multiple executions would
+	  run more smoothly. (thanks to Drew Taylor)
+
 0.02  Sat Aug 11 2001
 	- added tests using Spreadsheet::ParseExcel
 
