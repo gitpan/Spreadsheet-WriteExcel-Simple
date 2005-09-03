@@ -1,5 +1,8 @@
 Revision history for Perl extension Spreadsheet::WriteExcel::Simple.
 
+1.03  Sat Sep  3 20:36:47 UTC 2005
+	- Use binmode when save()-ing file (Ken Prows)
+
 1.02  Dec 27 2004
 	- Reintegrate bizarrely unreleased 1.00 code
 

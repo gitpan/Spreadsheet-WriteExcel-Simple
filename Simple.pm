@@ -1,8 +1,8 @@
 package Spreadsheet::WriteExcel::Simple;
 
+$VERSION = '1.03';
+
 use strict;
-use vars qw/$VERSION/;
-$VERSION = '1.02';
 
 use Spreadsheet::WriteExcel 0.31;
 use IO::Scalar              1.126;
@@ -133,6 +133,7 @@ sub save {
 	my $self = shift;
 	my $name = shift or die 'save() needs a file name';
 	open  my $file, ">$name" or die "Could not open $name for writing: $!";
+	binmode $file;
 	print $file $self->data;
 	close $file;
 }
