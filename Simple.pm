@@ -1,6 +1,6 @@
 package Spreadsheet::WriteExcel::Simple;
 
-$VERSION = '1.03';
+$VERSION = '1.04';
 
 use strict;
 
@@ -23,7 +23,7 @@ Spreadsheet::WriteExcel::Simple - A simple single-sheet Excel document
 
 =head1 DESCRIPTION
 
-This provides an abstraction to the Spreadsheet::WriteExcel module
+This provides an abstraction to the L<Spreadsheet::WriteExcel> module
 for easier creation of simple single-sheet Excel documents.
 
 In its most basic form it provides two methods for writing data:
@@ -40,9 +40,10 @@ wish to manipulate these directly.
 
   my $ss = Spreadsheet::WriteExcel::Simple->new;
 
-Create a new single-sheet Excel document. You do not need to supply
-this a filename or filehandle. The data is store internally, and can
-be retrieved later through the 'data' method.
+Create a new single-sheet Excel document. You should not supply this
+a filename or filehandle. The data is stored internally, and can be
+retrieved later through the 'data' method or saved using the 'save'
+method.
 
 =cut
 
@@ -110,9 +111,9 @@ sub data {
   my $worksheet = $ss->sheet;
 
 These return the underlying Spreadsheet::WriteExcel objects representing
-the workbook and worksheet respectively. If you find yourself doing a
-lot of work with these, you probably shouldn't be using this module,
-but using Spreadsheet::WriteExcel directly.
+the workbook and worksheet respectively. If you find yourself making
+more that a trivial amount of use of these, you probably shouldn't be
+using this module, but using Spreadsheet::WriteExcel directly.
 
 =cut
 
@@ -125,7 +126,7 @@ sub _bold { $_[0]->{bold} }
 
 	$ss->save("filename.xls");
 
-Save the spreadsheet to the given filename.
+Save the spreadsheet with the given filename.
 
 =cut
 
@@ -140,7 +141,7 @@ sub save {
 
 =head1 BUGS
 
-This can't yet handle dates.
+This can't yet handle dates in a sensible manner.
 
 =head1 AUTHOR
 
@@ -158,7 +159,7 @@ this module.
 
 =head1 COPYRIGHT
 
-Copyright (C) 2001-2004 Tony Bowden. All rights reserved.
+Copyright (C) 2001-2005 Tony Bowden. All rights reserved.
 
 This module is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
